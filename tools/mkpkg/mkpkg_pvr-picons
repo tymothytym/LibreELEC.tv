@@ -1,0 +1,88 @@
+#!/bin/sh
+################################################################################
+#      This file is part of LibreELEC - https://LibreELEC.tv
+#      Copyright (C) 2016 Team LibreELEC
+#
+#  LibreELEC is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  LibreELEC is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
+################################################################################
+
+# check for curl (to get the git version), pngquant (for the image compression) and rsvg-convert (to convert svg to png)
+command -v curl >/dev/null 2>&1 || { echo >&2 " WARNING: curl is required \n sudo apt-get install curl \n"; exit 1; }
+command -v pngquant >/dev/null 2>&1 || { echo >&2 " WARNING: pngquant is required \n sudo apt-get install pngquant \n"; exit 1; }
+command -v rsvg-convert >/dev/null 2>&1 || { echo >&2 " WARNING: librsvg2-bin is required \n sudo apt-get install librsvg2-bin \n"; exit 1; }
+
+# remove old files
+echo "removing old sources ..."
+rm -rf picons/
+echo "... done\n"
+
+
+## workaround githubs slow speeds
+## git clone would take ~60min
+
+# get last commit date
+GIT_REV=$( curl -s https://api.github.com/repos/picons/picons-source/commits/master | tac | tac | head -8 | grep date | awk '{ print $2 }' | sed s/\"//g | sed s/,//g | sed 's/.\{10\}$//');
+echo "building picons-$GIT_REV\n\n"
+
+# download and unpack
+echo "download and unpack"
+mkdir picons && cd picons/
+wget -O picons.tar.gz https://github.com/picons/picons-source/tarball/master
+tar -zxvf picons.tar.gz && rm picons.tar.gz
+cd picons-picons-source-*/
+echo "... done\n"
+
+
+# create default file
+# "size x size; padding x padding; light or default; transparent or background"
+echo "400x240;394x234;light;transparent" > build-input/backgrounds.conf
+
+
+# build the images - srp naming
+echo "build files"
+./2-build-picons.sh srp-full
+echo "... done\n"
+
+
+# move the output files to a better directory
+echo "move output file"
+mv build-output/binaries-srp-full/srp-full.*.hardlink.tar.xz ../.
+cd ..
+echo "... done\n"
+
+
+# extract folder
+echo "extract archive"
+tar -xJf srp-full.*.hardlink.tar.xz && rm srp-full.*.hardlink.tar.xz
+mv srp-full.* pvr-picons-${GIT_REV}
+echo "... done\n"
+
+
+# png compress the files (saves ~30%)
+# sudo apt-get install pngquant
+echo "recompress the png files with pngquant"
+cd pvr-picons-${GIT_REV}
+pngquant --speed 1 --ext=.png --force --quality=60-65 *.png
+cd ..
+echo "... done\n"
+
+
+# compress it
+echo "compress the output folder"
+tar cfJ ../pvr-picons-${GIT_REV}.tar.xz pvr-picons-${GIT_REV}/
+echo "pvr-picons-${GIT_REV}"
+echo "... done\n"
+
+
+echo "\n\nfinished if no error appear\n"

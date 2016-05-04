@@ -25,14 +25,14 @@ PKG_SITE="http://support.sundtek.com/"
 PKG_URL=""
 PKG_DEPENDS_TARGET=""
 PKG_PRIORITY="optional"
-PKG_SECTION="driver/dvb"
+PKG_SECTION="driver.dvb"
 PKG_SHORTDESC="Sundtek MediaTV: a Linux driver to add support for SUNDTEK USB DVB devices"
 PKG_LONGDESC="Install this to add support for SundTek USB DVB devices."
+PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Sundtek MediaTV"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_AUTORECONF="no"
 PKG_ADDON_REPOVERSION="8.0"
 
 make_target() {

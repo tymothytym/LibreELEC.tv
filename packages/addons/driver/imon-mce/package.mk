@@ -25,14 +25,14 @@ PKG_SITE="https://libreelec.tv"
 PKG_URL=""
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
-PKG_SECTION="driver/remote"
+PKG_SECTION="driver.remote"
 PKG_SHORTDESC="iMON-MCE: a Linux driver to add support for MCE remotes to the iMON driver"
 PKG_LONGDESC="Install this to add support for iMon MCE remote controls."
+PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="iMON-MCE"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_AUTORECONF="no"
 PKG_ADDON_REPOVERSION="8.0"
 
 make_target() {

@@ -30,11 +30,11 @@ PKG_PRIORITY="optional"
 PKG_SECTION="service"
 PKG_SHORTDESC="Tvheadend: a TV streaming server for Linux"
 PKG_LONGDESC="Tvheadend($PKG_VERSION_NUMBER): is a TV streaming server for Linux supporting DVB-S/S2, DVB-C, DVB-T/T2, IPTV, SAT>IP, ATSC and ISDB-T"
+PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Tvheadend 4.2"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_AUTORECONF="no"
 PKG_ADDON_REPOVERSION="8.0"
 
 # transcoding only for generic

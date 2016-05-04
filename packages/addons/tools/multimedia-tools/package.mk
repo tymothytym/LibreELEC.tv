@@ -28,14 +28,12 @@ PKG_PRIORITY="optional"
 PKG_SECTION="virtual"
 PKG_SHORTDESC="A bundle of multimedia tools and programs"
 PKG_LONGDESC="This bundle currently includes mediainfo, mesa-demos, opencaster, tsdecrypt and tstools."
+PKG_AUTORECONF="no"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Multimedia Tools"
 PKG_ADDON_TYPE="xbmc.python.script"
-PKG_ADDON_PROVIDES=""
 PKG_ADDON_REPOVERSION="8.0"
-
-PKG_AUTORECONF="no"
 
 PKG_DEPENDS_TARGET="toolchain \
                     mediainfo \

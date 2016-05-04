@@ -25,14 +25,14 @@ PKG_SITE="http://code.google.com/p/boblight"
 PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
 PKG_DEPENDS_TARGET="toolchain libusb"
 PKG_PRIORITY="optional"
-PKG_SECTION="service/multimedia"
+PKG_SECTION="service.multimedia"
 PKG_SHORTDESC="Boblight: an AmbiLight controller"
 PKG_LONGDESC="Boblight($PKG_VERSION) is an opensource AmbiLight implementation."
+PKG_AUTORECONF="yes"
 
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="Boblight"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_AUTORECONF="yes"
 PKG_ADDON_REPOVERSION="8.0"
 
 if [ "$DISPLAYSERVER" = "x11" ] ; then

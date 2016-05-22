@@ -10,9 +10,12 @@
     <category label="Minisatip">
 		<setting id="MINISATIP_SATIP-TCP" type="bool" label="RTSP over TCP instead of UDP" default="false" />
 		<setting id="MINISATIP_CLEANPSI" type="bool" label="Clean the PSI from all CA information" default="false" />
-		<setting id="MINISATIP_DVBAPI_IP" type="text" label="Specify the hostname for the dvbapi server (oscam)" default="127.0.0.1" enable="eq(-1,true)" />
+		<setting id="MINISATIP_DVBAPI_IP" type="ipaddress" label="Specify the hostname for the dvbapi server (oscam)" default="127.0.0.1" enable="eq(-1,true)" />
 		<setting id="MINISATIP_DVBAPI_PORT" type="text" label="Specify the port for the dvbapi server (oscam)" default="9000" enable="eq(-2,true)" />
-		<setting id="MINISATIP_RTSP-PORT_PORT" type="text" label="Port for listening for rtsp requests" default="554" /> 
+		<setting id="MINISATIP_RTSP_PORT" type="text" label="Port for listening for rtsp requests" default="554" /> 
+    </category>
+    <category label="Debugging">
 		<setting id="DEBUG" type="bool" label="Debug Log" default="false" />
+		<setting id="MINISATIP_TESTMODE" type="bool" label="Simulate DVB adapters on this box" default="false" />
     </category>
 </settings>

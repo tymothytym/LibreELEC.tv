@@ -22,8 +22,8 @@
 import os
 import time
 
-# create downloads foilder at an fresh install
-# otherwise thje folder would be created at first smb access
+# create downloads folder at an fresh install
+# otherwise the folder would be created at first smb access
 
 if not os.path.exists("/storage/downloads"):
   os.makedirs("/storage/downloads")
@@ -76,15 +76,15 @@ def mediabuild():
 	LF.close()
 	reboot()
 
-def dddvbcc():
-	LF = open('/storage/downloads/dvb-drivers.txt', 'w')
-	LF.write('4.4.7-dddvb-cc')
-	LF.close()
-	reboot()
-
 def dvbsky():
 	LF = open('/storage/downloads/dvb-drivers.txt', 'w')
 	LF.write('4.4.7-dvbsky')
+	LF.close()
+	reboot()
+
+def digital_devices():
+	LF = open('/storage/downloads/dvb-drivers.txt', 'w')
+	LF.write('4.4.7-digital_devices')
 	LF.close()
 	reboot()
 
@@ -107,9 +107,9 @@ elif args == 'tbs_oss':
 	ljalvescc()
 elif args == 'mediabuild':
 	mediabuild()
-elif args == 'dddvbcc':
-	dddvbcc()
-elif args == 'dvbsky':
-	dddvbcc()
+elif args == 'dvbskyc':
+	dvbsky()
+elif args == 'digital_devices':
+	digital_devices()
 else:
 	xbmc.executebuiltin('Addon.OpenSettings(script.dvb.driver)')

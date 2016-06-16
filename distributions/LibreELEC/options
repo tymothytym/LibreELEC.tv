@@ -23,10 +23,10 @@
 # Skins to install (Estuary)
 # Space separated list is supported,
 # e.g. SKINS="Estuary"
-  SKINS="Estuary"
+  SKINS=""
 
 # Default Skin (Estuary)
-  SKIN_DEFAULT="Estuary"
+  SKIN_DEFAULT=""
 
 # install extra subtitle Fonts for KODI (yes / no)
   KODI_EXTRA_FONTS="no"
@@ -60,7 +60,7 @@
 # for a list of additinoal drivers see packages/linux-drivers
 # Space separated list is supported,
 # e.g. ADDITIONAL_DRIVERS="DRIVER1 DRIVER2"
-  ADDITIONAL_DRIVERS="RTL8192CU RTL8192DU RTL8192EU RTL8188EU RTL8812AU"
+  ADDITIONAL_DRIVERS=""
 
 # build and install bluetooth support (yes / no)
   BLUETOOTH_SUPPORT="no"
@@ -108,12 +108,12 @@
   SFTP_SERVER="yes"
 
 # build and install OpenVPN support (yes / no)
-  OPENVPN_SUPPORT="yes"
+  OPENVPN_SUPPORT="no"
 
 # build and install diskmounter support (udevil)
 # this service provide auto mounting support for external drives in the
 # mediacenter also automount internally drives at boottime via udev (yes / no)
-  UDEVIL="yes"
+  UDEVIL="no"
 
 # build and install exFAT fuse support (yes / no)
   EXFAT="no"
@@ -125,7 +125,7 @@
   HFSTOOLS="no"
 
 # Windowmanager to use (ratpoison / fluxbox / none)
-  WINDOWMANAGER="fluxbox"
+  WINDOWMANAGER="none"
 
 # Xorg Graphic drivers to use (all / i915,i965,r200,r300,r600,nvidia)
 # Space separated list is supported,

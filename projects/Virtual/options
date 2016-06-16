@@ -65,10 +65,10 @@
 ################################################################################
 
   # build and install ALSA Audio support (yes / no)
-    ALSA_SUPPORT="yes"
+    ALSA_SUPPORT="no"
 
   # OpenGL(X) implementation to use (no / mesa)
-    OPENGL="mesa"
+    OPENGL="no"
 
   # OpenGL-ES implementation to use (no / bcm2835-driver / gpu-viv-bin-mx6q)
     OPENGLES="no"

@@ -1,3 +1,6 @@
+1.5
+- removed unused drivers
+
 1.4
 - Add Digital Devices (manufacturer) support
 

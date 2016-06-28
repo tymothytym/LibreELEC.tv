@@ -35,7 +35,7 @@ PKG_AUTORECONF="yes"
 PKG_IS_ADDON="yes"
 PKG_ADDON_NAME="x11vnc"
 PKG_ADDON_TYPE="xbmc.service"
-PKG_ADDON_REPOVERSION="8.0"
+PKG_ADDON_REPOVERSION="7.0"
 
 PKG_CONFIGURE_OPTS_TARGET="--with-x \
       --without-xkeyboard \

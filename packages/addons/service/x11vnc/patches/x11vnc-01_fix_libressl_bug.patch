@@ -1,0 +1,21 @@
+Bug: https://bugs.gentoo.org/show_bug.cgi?id=584968
+Fix: https://wiki.freebsd.org/LibreSSL/PatchingPorts#SHA-0
+Subject: [PATCH] fix libressl bug
+
+---
+ src/enc.h | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/enc.h b/src/enc.h
+index 55d49bb..18214d1 100644
+--- a/src/enc.h
++++ b/src/enc.h
+@@ -454,8 +454,6 @@ extern void enc_do(char *ciph, char *keyfile, char *lport, char *rhp) {
+ 		p++;
+ 		if (strstr(p, "md5+") == p) {
+ 			Digest = EVP_md5();        p += strlen("md5+");
+-		} else if (strstr(p, "sha+") == p) {
+-			Digest = EVP_sha();        p += strlen("sha+");
+ 		} else if (strstr(p, "sha1+") == p) {
+ 			Digest = EVP_sha1();       p += strlen("sha1+");
+ 		} else if (strstr(p, "ripe+") == p) {

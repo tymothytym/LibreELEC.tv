@@ -17,13 +17,12 @@
 ################################################################################
 
 PKG_NAME="libvncserver"
-PKG_VERSION="0.9.10"
+PKG_VERSION="1f8c443"
 PKG_REV="0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://libvnc.github.io/"
-PKG_URL="https://github.com/LibVNC/libvncserver/archive/LibVNCServer-$PKG_VERSION.tar.gz"
-PKG_SOURCE_DIR="libvncserver-LibVNCServer-$PKG_VERSION"
+PKG_URL="https://github.com/LibVNC/libvncserver/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain libjpeg-turbo libpng"
 PKG_SECTION="libs"
 PKG_PRIORITY="optional"

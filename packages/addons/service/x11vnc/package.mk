@@ -19,13 +19,13 @@
 ################################################################################
 
 PKG_NAME="x11vnc"
-PKG_VERSION="0.9.13"
+PKG_VERSION="74fc679"
 PKG_REV="100"
 PKG_ARCH="x86_64"
 PKG_LICENSE="OSS"
 PKG_SITE="https://github.com/LibVNC/x11vnc"
-PKG_URL="http://downloads.sourceforge.net/project/libvncserver/x11vnc/${PKG_VERSION}/x11vnc-${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain libX11 libXext libXtst libjpeg-turbo"
+PKG_URL="https://github.com/LibVNC/x11vnc/archive/${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_TARGET="toolchain libvncserver libX11 libXext libXtst libressl"
 PKG_PRIORITY="optional"
 PKG_SECTION="service"
 PKG_SHORTDESC="x11vnc: a VNC server for Linux"
@@ -37,14 +37,13 @@ PKG_ADDON_NAME="x11vnc"
 PKG_ADDON_TYPE="xbmc.service"
 PKG_ADDON_REPOVERSION="8.0"
 
-PKG_CONFIGURE_OPTS_TARGET="--enable-static \
-      --with-x11vnc \
-      --with-x \
+PKG_CONFIGURE_OPTS_TARGET="--with-x \
       --without-xkeyboard \
       --without-xinerama \
       --without-xrandr \
       --without-xfixes \
       --without-xdamage \
+      --without-xcomposite \
       --without-xtrap \
       --without-xrecord \
       --without-fbpm \
@@ -53,19 +52,10 @@ PKG_CONFIGURE_OPTS_TARGET="--enable-static \
       --without-fbdev \
       --without-uinput \
       --without-macosx-native \
-      --without-crypt \
-      --without-crypto \
-      --without-ssl \
-      --without-avahi \
-      --with-jpeg \
-      --without-libz \
-      --with-zlib \
-      --without-gnutls \
-      --without-client-tls"
+      --without-colormultipointer"
 
-pre_build_target() {
-  mkdir -p $PKG_BUILD/.$TARGET_NAME
-  cp -RP $PKG_BUILD/* $PKG_BUILD/.$TARGET_NAME
+pre_configure_target() {
+  export LIBS="$LIBS -lpthread -lresolv -lz -ljpeg -lpng"
 }
 
 makeinstall_target() {
@@ -74,5 +64,5 @@ makeinstall_target() {
 
 addon() {
   mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/bin
-    cp $PKG_BUILD/.$TARGET_NAME/x11vnc/x11vnc $ADDON_BUILD/$PKG_ADDON_ID/bin
+  cp -P $PKG_BUILD/.$TARGET_NAME/src/x11vnc $ADDON_BUILD/$PKG_ADDON_ID/bin
 }

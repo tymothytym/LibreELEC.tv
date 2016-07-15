@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="script.dvb.driver"
-PKG_VERSION="1.5"
+PKG_VERSION="1.6"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
@@ -36,6 +36,14 @@ make_target() {
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME
+  mkdir -p $INSTALL/usr/share/kodi/addons/$PKG_NAME/resources
   cp -rP $PKG_DIR/addon/* $INSTALL/usr/share/kodi/addons/$PKG_NAME
+
+  if [ "$TARGET_ARCH" = x86_64 ]; then
+    cp $PKG_DIR/resources/settings_generic.xml $INSTALL/usr/share/kodi/addons/$PKG_NAME/resources/settings.xml
+  fi
+
+  if [ "$TARGET_ARCH" = arm ]; then
+    cp $PKG_DIR/resources/settings_arm.xml $INSTALL/usr/share/kodi/addons/$PKG_NAME/resources/settings.xml
+  fi 
 }

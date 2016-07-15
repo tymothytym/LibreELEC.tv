@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="digital_devices"
-PKG_VERSION="0.9.23"
+PKG_VERSION="6b73fae"
 PKG_REV="1"
 PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"

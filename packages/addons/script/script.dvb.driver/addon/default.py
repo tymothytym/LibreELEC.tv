@@ -104,7 +104,7 @@ elif args == 'ljalves':
 elif args == 'ljalvescc':
 	ljalvescc()
 elif args == 'tbs_oss':
-	ljalvescc()
+	tbs_oss()
 elif args == 'mediabuild':
 	mediabuild()
 elif args == 'dvbskyc':

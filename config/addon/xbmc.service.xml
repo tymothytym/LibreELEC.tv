@@ -20,5 +20,10 @@
 @PKG_DISCLAIMER@
     </disclaimer>
     <platform>all</platform>
+    <assets>
+      <icon>resources/icon.png</icon>
+      <fanart>resources/fanart.jpg</fanart>
+@PKG_ADDON_SCREENSHOT@
+    </assets>
   </extension>
 </addon>

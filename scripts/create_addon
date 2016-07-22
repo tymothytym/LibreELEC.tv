@@ -76,7 +76,13 @@ pack_addon() {
   fi
 
   if [ -f $PKG_DIR/icon/icon.png ]; then
-    cp $PKG_DIR/icon/icon.png $ADDON_BUILD/$PKG_ADDON_ID
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/resources
+    cp $PKG_DIR/icon/icon.png $ADDON_BUILD/$PKG_ADDON_ID/resources
+  fi
+
+  if [ -f $PKG_DIR/resources/fanart.jpg ]; then
+    mkdir -p $ADDON_BUILD/$PKG_ADDON_ID/resources
+    cp $PKG_DIR/resources/fanart.jpg $ADDON_BUILD/$PKG_ADDON_ID/resources
   fi
 
   if [ -f $PKG_DIR/changelog.txt ]; then
@@ -91,6 +97,13 @@ pack_addon() {
   if [ ! -z "$PKG_ADDON_NAME" ] ; then
     ADDON_NAME="$PKG_ADDON_NAME"
   fi
+  for f in $PKG_DIR/resources/screenshot-*.{jpg,png}; do if [ -f $f ];
+    then
+      f=$(echo $f | sed 's/.*\///')
+      PKG_ADDON_SCREENSHOT+="<screenshot>resources/$f</screenshot>\n"
+    fi
+  done
+
   $SED -e "s|@PKG_ADDON_ID@|$PKG_ADDON_ID|g" \
        -e "s|@ADDON_NAME@|$ADDON_NAME|g" \
        -e "s|@ADDON_VERSION@|$ADDON_VERSION.$PKG_REV|g" \
@@ -101,6 +114,7 @@ pack_addon() {
        -e "s|@PKG_DISCLAIMER@|$PKG_DISCLAIMER|g" \
        -e "s|@PROVIDER_NAME@|$PROVIDER_NAME|g" \
        -e "s|@PKG_ADDON_PROVIDES@|$PKG_ADDON_PROVIDES|g" \
+       -e "s|@PKG_ADDON_SCREENSHOT@|$PKG_ADDON_SCREENSHOT|g" \
        -i $ADDON_BUILD/$PKG_ADDON_ID/addon.xml
 
   if [ "$2" != "-test" ] ; then
@@ -119,9 +133,20 @@ pack_addon() {
     if [ -f $ADDON_BUILD/$PKG_ADDON_ID/changelog.txt ]; then
       cp $ADDON_BUILD/$PKG_ADDON_ID/changelog.txt $ADDON_INSTALL_DIR/changelog-$ADDONVER.txt
     fi
-    if [ -f $ADDON_BUILD/$PKG_ADDON_ID/icon.png ]; then
-      cp $ADDON_BUILD/$PKG_ADDON_ID/icon.png $ADDON_INSTALL_DIR/icon.png
+    if [ -f $ADDON_BUILD/$PKG_ADDON_ID/resources/icon.png ]; then
+      mkdir -p $ADDON_INSTALL_DIR/resources
+      cp $ADDON_BUILD/$PKG_ADDON_ID/resources/icon.png $ADDON_INSTALL_DIR/resources/icon.png
     fi
+    if [ -f $ADDON_BUILD/$PKG_ADDON_ID/resources/fanart.jpg ]; then
+      mkdir -p $ADDON_INSTALL_DIR/resources
+      cp $ADDON_BUILD/$PKG_ADDON_ID/resources/fanart.jpg $ADDON_INSTALL_DIR/resources/fanart.jpg
+    fi
+    for f in $PKG_DIR/resources/screenshot-*.{jpg,png}; do if [ -f $f ];
+      then
+        mkdir -p $ADDON_INSTALL_DIR/resources
+        cp $f $ADDON_INSTALL_DIR/resources/
+      fi
+    done
   fi
 }
 

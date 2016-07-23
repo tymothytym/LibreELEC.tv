@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="tbs-oss"
-PKG_VERSION="2016-07-21"
+PKG_VERSION="2016-07-22"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

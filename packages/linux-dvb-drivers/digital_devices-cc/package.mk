@@ -16,39 +16,30 @@
 #  along with LibreELEC.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-PKG_NAME="tbs-oss"
-PKG_VERSION="2016-07-27"
+PKG_NAME="digital_devices-cc"
+PKG_VERSION="adb25d0"
 PKG_REV="1"
-PKG_ARCH="any"
+PKG_ARCH="x86_64"
 PKG_LICENSE="GPL"
-PKG_SITE="tbs"
-PKG_URL="http://mycvh.de/openelec/$PKG_NAME/$PKG_NAME-${PKG_VERSION}.tar.xz"
+PKG_SITE="https://github.com/DigitalDevices/dddvb/"
+PKG_URL="https://bitbucket.org/CrazyCat/dddvb/get/${PKG_VERSION}.tar.bz2"
+PKG_SOURCE_DIR="CrazyCat-dddvb-${PKG_VERSION}*"
 PKG_DEPENDS_TARGET=""
 PKG_BUILD_DEPENDS_TARGET="toolchain linux"
 PKG_PRIORITY="optional"
 PKG_SECTION="driver"
-PKG_SHORTDESC="Open Source TBS drivers from TBS"
-PKG_LONGDESC="Open Source TBS drivers from TBS"
+PKG_SHORTDESC="Linux Digital Devices manufacturer drivers"
+PKG_LONGDESC="Linux Digital Devices manufacturer drivers"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-pre_make_target() {
-  export KERNEL_VER=$(get_module_dir)
-  # dont use our LDFLAGS, use the KERNEL LDFLAGS
-  export LDFLAGS=""
-}
-
 make_target() {
-  cd media_build
-  make dir DIR=../media
-  make VER=$KERNEL_VER SRCDIR=$(kernel_path)
+  KDIR=$(kernel_path) make
 }
 
 makeinstall_target() {
-  mkdir -p $INSTALL/lib/modules/$KERNEL_VER/updates/media_build
-
-  find $ROOT/$PKG_BUILD/media_build/v4l/ -name \*.ko -exec strip --strip-debug {} \;
-  find $ROOT/$PKG_BUILD/media_build/v4l/ -name \*.ko -exec cp {} $INSTALL/lib/modules/$KERNEL_VER/updates/media_build \;
+  mkdir -p $INSTALL/lib/modules/$(get_module_dir)/updates/$PKG_NAME
+  find $ROOT/$PKG_BUILD/ -path $INSTALL -prune -o -name \*.ko -exec cp {} $INSTALL/lib/modules/$(get_module_dir)/updates/$PKG_NAME \;
 }
 
 pre_install() {
